@@ -51,18 +51,20 @@ def recordCharPos(query,pos):
 	else:
 		return False
 
-content=open("context/rawdata/HP1-17.txt","rb").read()
-result=jieba.tokenize(str(content,'utf-8'))
-for tk in result: 
-	#print("word %s\t\t start: %d \t\t end:%d" % (tk[0],tk[1],tk[2]))
-	recordCharPos(tk[0],tk[1])
-cfile=open("context/freq/hp1-17charPos.txt",'a',encoding='utf8')
-cdata={}
-cdata['episode']='1'
-cdata['chapter']='17'
-cdata['character']=[]
-for item in charPosList:
-	cd={'name':item.name,
-		'posList':item.posList}
-	cdata['character'].append(cd)
-json.dump(cdata,cfile,ensure_ascii=False,indent=4)
+for i in range(1,18):
+        content=open("context/rawdata/HP1-"+str(i)+".txt","rb").read()
+        result=jieba.tokenize(str(content,'utf-8'))
+        for tk in result: 
+                #print("word %s\t\t start: %d \t\t end:%d" % (tk[0],tk[1],tk[2]))
+                recordCharPos(tk[0],tk[1])
+        cfile=open("context/freq/hp1-"+str(i)+"charPos.txt",'a',encoding='utf8')
+        cdata={}
+        cdata['episode']='1'
+        cdata['chapter']=str(i)
+        cdata['character']=[]
+        for item in charPosList:
+                cd={'name':item.name,
+                        'posList':item.posList}
+                cdata['character'].append(cd)
+        json.dump(cdata,cfile,ensure_ascii=False,indent=4)
+        charPosList.clear()
