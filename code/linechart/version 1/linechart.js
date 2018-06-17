@@ -156,7 +156,7 @@ var FreshChart = function(selector, dataArray, options) {
   .y(function(d) {
     return yScale(d[options.yKey]);
   })
-  .interpolate("cardinal"),
+  .interpolate("linear"),
 
   // x scale function. will scale your data set to be proportionate to
   // the size of the svg width
@@ -164,7 +164,7 @@ var FreshChart = function(selector, dataArray, options) {
 
   // y scale function. will scale your data set to be proportionate to
   // the size of the svg height
-  yScale = d3.scale.linear().range([options.height, 0]),
+  yScale = d3.scale.linear().range([0,options.height]),
 
   // generates the x axis based on the x scale when called
   xAxis = d3.svg.axis()
