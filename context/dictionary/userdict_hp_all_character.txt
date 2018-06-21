@@ -5,6 +5,8 @@
 焦壺 1 nrfg
 嘉拉堤美思 1 nrfg
 阿拉特穆敵 1 nrfg
+瘋眼穆敵 1 nrfg
+瘋眼 2 nr
 麥米奈娃 1 nrfg
 菲力孚立維 1 nrfg
 赫瑞司史拉轟 1 nrfg
@@ -30,7 +32,6 @@
 胖修士 1 nrfg
 血腥男爵 1 nrfg
 灰衣貴婦 1 nrfg
-海倫娜雷文克勞 1 nrfg
 皮皮鬼 1 nrfg
 丙斯 1 nrfg
 愛哭鬼麥朵 1 nrfg
@@ -60,8 +61,8 @@
 克拉 1 nrfg
 安東寧杜魯哈 1 nrfg
 高爾 1 nrfg
-巴坦雷斯壯 1 nrfg
-道夫雷斯壯 1 nrfg
+巴坦雷斯狀 1 nrfg
+道夫雷斯狀 1 nrfg
 莫賽博 1 nrfg
 諾特 1 nrfg
 奧古斯都羅克五 1 nrfg
@@ -75,7 +76,8 @@
 伊凡羅西兒 1 nrfg
 韋克 1 nrfg
 文森克拉 1 nrfg
-貝拉雷斯壯 1 nrfg
+貝拉雷斯狀 1 nrfg
+貝拉特里克斯 1 nrfg
 吉朋 1 nrfg
 伊果卡卡夫 1 nrfg
 跩哥馬份 1 nrfg
@@ -113,7 +115,6 @@
 伯尼皮斯華茲 1 nrfg
 賴里 1 nrfg
 妙麗格蘭傑 1 nrfg
-正氣師 1 nrfg
 高文羅巴茲 1 nrfg
 鈍力 1 nrfg
 波弗 1 nrfg
@@ -125,7 +126,7 @@
 榮恩衛斯理 1 nrfg
 溫順馬治邦 1 nrfg
 太比略歐登 1 nrfg
-桃樂絲恩不里居 1 nrfg
+桃樂絲恩不裡居 1 nrfg
 柏莎喬金 1 nrfg
 魯多貝漫 1 nrfg
 鮑伯歐登 1 nrfg
@@ -184,12 +185,11 @@
 伏林伏德秋 1 nrfg
 奧利凡德 1 nrfg
 奧古斯都沃爾梅 1 nrfg
-雷斯壯 1 nrfg
 摩金 1 nrfg
 波金 1 nrfg
 加拉塔克伯克 1 nrfg
 湯姆魔佛羅瑞斗 1 nrfg
-阿波佛鄧不利多 1 nrfg
+阿不福思鄧不利多 1 nrfg
 羅梅塔 1 nrfg
 泥腳 1 nrfg
 米蘭達郭汐客 1 nrfg
@@ -426,7 +426,6 @@
 埃弗拉 2 nr
 德克斯特 2 nr
 阿曼多 2 nr
-佚名 2 nr
 焦壺 2 nr
 嘉拉堤 2 nr
 阿拉特 2 nr
@@ -512,7 +511,6 @@
 娃康坦 2 nr
 伯尼 2 nr
 賴里 2 nr
-正氣師 2 nr
 高文 2 nr
 鈍力 2 nr
 波弗 2 nr
@@ -569,7 +567,6 @@
 伏林 2 nr
 奧利凡德 2 nr
 奧古斯都 2 nr
-雷斯壯 2 nr
 摩金 2 nr
 波金 2 nr
 加拉塔克 2 nr
@@ -683,7 +680,7 @@
 羅伯 2 nr
 派恩 2 nr
 馬克 2 nr
-阿波佛 2 nr
+阿不福思 2 nr
 阿不思 2 nr
 阿拉貝拉 2 nr
 阿尼 2 nr
@@ -887,7 +884,7 @@
 多布 2 nr
 多德里奇 2 nr
 多勒 2 nr
-恩不里居 2 nr
+恩不裡居 2 nr
 法比榭 2 nr
 法利 2 nr
 凡 2 nr
@@ -943,8 +940,7 @@
 藍孔 2 nr
 勒梅 2 nr
 雷木思 2 nr
-雷斯壯 2 nr
-雷文克勞 2 nr
+雷斯狀 2 nr
 林奇 2 nr
 隆巴頓 2 nr
 盧埃林 2 nr
