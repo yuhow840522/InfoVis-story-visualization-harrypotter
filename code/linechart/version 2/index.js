@@ -253,7 +253,7 @@ $('.chapter-select').on('click',function(){
   }).style({
     'border': '0px dotted #aaa'
   });
-  drawData($(this).text()-1)
+  drawData(chap-1)
 });
 
 //add segment select bar
@@ -270,5 +270,5 @@ $("#segmentSelectBar").on("input", function(){
     'border': '0px dotted #aaa'
   });
   $("#SegCount").text(sections);
-  drawData(chap);
+  drawData(chap-1);
 });
