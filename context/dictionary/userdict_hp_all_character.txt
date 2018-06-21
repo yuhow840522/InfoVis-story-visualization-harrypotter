@@ -108,7 +108,7 @@
 微奇推克羅 1 nrfg
 提貝盧斯麥克拉根 1 nrfg
 雷格卡特摩 1 nrfg
-魯休思馬份 1 nrfg
+魯休斯馬份 1 nrfg
 亞伯藍孔 1 nrfg
 崔佛 1 nrfg
 娃康坦 1 nrfg
@@ -753,7 +753,7 @@
 麗塔 2 nr
 琳妮 2 nr
 魯霸 2 nr
-魯休思 2 nr
+魯休斯 2 nr
 露娜 2 nr
 羅咪 2 nr
 蘿拉 2 nr
