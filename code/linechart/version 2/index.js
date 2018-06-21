@@ -1,7 +1,11 @@
 var svgwidth=1600;
 var svgheight=900;
 var endPos=15000;
-var sections=5;
+var sections=3;
+
+
+
+
 var maxFreqofSegs=Array(sections).fill(0);
 function getRandomColor() {
   var letters = '0123456789ABCDE';
@@ -13,163 +17,170 @@ function getRandomColor() {
 }
 /*
 var scaleX=d3.scale.linear()
-                 .range([0,1600])
-                 .domain([0,15000]);
+.range([0,1600])
+.domain([0,15000]);
 
 var scaleY=d3.scale.linear()
-                 .range([0,900])
-                 .domain([0,15000]);*/
+.range([0,900])
+.domain([0,15000]);*/
 
 function scaleX(x){
-    return parseFloat(x/endPos*svgwidth);
+  return parseFloat(x/endPos*svgwidth);
 }
 function scaleY(y,maxFreq){
-    return parseFloat((1-y/maxFreq)*svgheight);
+  return parseFloat((1-y/maxFreq)*svgheight);
 }
 function scaleLineWidth(w){
-    return parseFloat(w/4+1);//Math.log(w,1.5);
+  return parseFloat(w/4+1);//Math.log(w,1.5);
 }
 function scaleCircleR(r){
-    return parseFloat(r/4+1);//2*(Math.log(r)+1);
+  return parseFloat(r/4+1);//2*(Math.log(r)+1);
 }
 function randomMove(x){
-    return parseFloat(x+Math.random()*0.5-0.25);
+  return parseFloat(x+Math.random()*0.5-0.25);
 }
 function calculateSections(x){
-    var delta = endPos/ sections;
-   // console.log(parseInt(x/delta+1));
-    return parseInt(x/delta);
+  var delta = endPos/ sections;
+  // console.log(parseInt(x/delta+1));
+  return parseInt(x/delta);
 }
+
 var line = d3.svg.line()
-  .x((d) => scaleX(d.x))
-  .y((d) => scaleY(d.y,d.mf))
-  .interpolate("step-after")
+.x((d) => scaleX(d.x))
+.y((d) => scaleY(d.y,d.mf))
+.interpolate("step-after")
 //console.log(data[0][1]["character"][]);
 
 
 var divToolTip = d3.select("body").append("div")
-           .attr("class", "tooltip")
-           .style("opacity", 1e-6);
+.attr("class", "tooltip")
+.style("opacity", 1e-6);
 
 function mouseover() {
-   divToolTip.transition()
-       .duration(500)
-       .style("opacity", 1);
+  divToolTip.transition()
+  .duration(500)
+  .style("opacity", 1);
 }
 function mouseout() {
-   divToolTip.transition()
-       .duration(500)
-       .style("opacity", 1e-6);
+  divToolTip.transition()
+  .duration(500)
+  .style("opacity", 1e-6);
 }
 
 
 
 function drawData(chap){
-    endPos=data[chap][0].endPosition;
-    var alltooltipData=[];
-    var allLineDatas=[];//all person's line
-    for(var i=0;i<sections;i++){
-        maxFreqofSegs[i]=0;
+  console.log("when drawData,segment is "+sections);
+  endPos=data[chap][0].endPosition;
+  var alltooltipData=[];
+  var allLineDatas=[];//all person's line
+  for(var i=0;i<sections;i++){
+    maxFreqofSegs[i]=0;
+  }
+  //console.log(data[chap][0].endPosition)
+  //console.log(data[chap][1]["character"].length)
+  for(var ch=0;ch<data[chap][1]["character"].length;ch++){
+    var linedata=[];
+    var posList=data[chap][1]["character"][ch]["posList"];
+    var freqOfSegs=Array(sections).fill(0);
+    var freqOfAllSegs=0;
+    var lineColor=getRandomColor();
+    for(var i=0;i<posList.length;i++){
+      let x=posList[i];
+      freqOfSegs[calculateSections(x)]++;
+      freqOfAllSegs++;
+      // console.log(calculateSections(x)+"||"+freqOfSegs[calculateSections(x)]+"||"+maxFreqofSegs[calculateSections(x)]);
+      if(freqOfSegs[calculateSections(x)]>maxFreqofSegs[calculateSections(x)]){
+        maxFreqofSegs[calculateSections(x)]=freqOfSegs[calculateSections(x)];
+      }
     }
-    //console.log(data[chap][0].endPosition)
-   //console.log(data[chap][1]["character"].length)
-    for(var ch=0;ch<data[chap][1]["character"].length;ch++){
-        var linedata=[];
-        var posList=data[chap][1]["character"][ch]["posList"];
-        var freqOfSegs=Array(sections).fill(0);
-        var freqOfAllSegs=0;
-        var lineColor=getRandomColor();
-        for(var i=0;i<posList.length;i++){
-            let x=posList[i];
-            freqOfSegs[calculateSections(x)]++;
-            freqOfAllSegs++;
-           // console.log(calculateSections(x)+"||"+freqOfSegs[calculateSections(x)]+"||"+maxFreqofSegs[calculateSections(x)]);
-            if(freqOfSegs[calculateSections(x)]>maxFreqofSegs[calculateSections(x)]){
-                maxFreqofSegs[calculateSections(x)]=freqOfSegs[calculateSections(x)];
-            }
-        }
 
-        for(var i=0;i<sections;i++){
-            var firstOccur=-1;
-            for(var j=0;j<posList.length;j++){
-                if(calculateSections(posList[j])==i){
-                    firstOccur=posList[j];
-                    break;
-                }
-            }
-            let point={name:data[chap][1]["character"][ch]["name"],
-                        x:firstOccur,
-                        y:freqOfSegs[i],
-                        mf:0,
-                        f:freqOfAllSegs,
-                        color:lineColor};
-            
-            if(firstOccur==-1){
-                point.x=i*endPos/sections+1;
-            }
-            else{
-                point.y=randomMove(point.y);
-                alltooltipData.push(point);
-            }
-            linedata.push(point);  
+    for(var i=0;i<sections;i++){
+      var firstOccur=-1;
+      for(var j=0;j<posList.length;j++){
+        if(calculateSections(posList[j])==i){
+          firstOccur=posList[j];
+          break;
         }
-        let point={
-            name:linedata[linedata.length-1].name,
-            x:endPos,
-            y:linedata[linedata.length-1].y,
-            f:linedata[linedata.length-1].f,
-            color:linedata[linedata.length-1].color
-        }
-        linedata.push(point);
-        allLineDatas.push(linedata);
+      }
+      let point={name:data[chap][1]["character"][ch]["name"],
+      x:firstOccur,
+      y:freqOfSegs[i],
+      mf:0,
+      f:freqOfAllSegs,
+      color:lineColor};
+
+      if(firstOccur==-1){
+        point.x=i*endPos/sections+1;
+      }
+      else{
+        point.y=randomMove(point.y);
+        alltooltipData.push(point);
+      }
+      linedata.push(point);
     }
-    
-    for(var i=1;i<sections;i++){
-        var sectionLine=[];
-        let Point1={x:i*endPos/sections,
-                   y:1,
-                   mf:1};
-        let Point2={x:i*endPos/sections,
-                   y:0,
-                   mf:1};
-        sectionLine.push(Point1);
-        sectionLine.push(Point2);
-        d3.select('#chart')
-            .append("path")
-            .attr('stroke-width',2)
-            .attr('d', line(sectionLine))
-            .style("stroke","#00000070");
+    let point={
+      name:linedata[linedata.length-1].name,
+      x:endPos+100,
+      y:linedata[linedata.length-1].y,
+      f:linedata[linedata.length-1].f,
+      color:linedata[linedata.length-1].color
     }
-    
-    for(var i=0;i<allLineDatas.length;i++){
-        for(var j=0;j<allLineDatas[i].length;j++){
-            allLineDatas[i][j].mf=maxFreqofSegs[calculateSections(allLineDatas[i][j].x)]+1;
-        }
-        d3.select('#chart')
-            .append("path")
-            .attr('stroke-width',scaleLineWidth(allLineDatas[i][0].f ))
-            .attr('d', line(allLineDatas[i]))
-            .style("stroke",allLineDatas[i][0].color);
+    linedata.push(point);
+    allLineDatas.push(linedata);
+  }
+
+  for(var i=1;i<sections;i++){
+    var sectionLine=[];
+    let Point1={
+      x:i*endPos/sections,
+      y:1,
+      mf:1
+    };
+    let Point2={x:i*endPos/sections,
+      y:0,
+      mf:1
+    };
+    sectionLine.push(Point1);
+    sectionLine.push(Point2);
+    d3.select('#chart')
+    .append("path")
+    .attr('stroke-width',2)
+    .attr('d', line(sectionLine))
+    .style("stroke","#00000070");
+  }
+
+  for(var i=0;i<allLineDatas.length;i++){
+    for(var j=0;j<allLineDatas[i].length;j++){
+      allLineDatas[i][j].mf=maxFreqofSegs[calculateSections(allLineDatas[i][j].x)]+1;
     }
-    //console.log(alltooltipData.length);
-    d3.select('#chart').selectAll("circle")
-        .data(alltooltipData)
-        .enter()
-        .append("circle")
-        .attr("cx",function(d){return scaleX(d.x);})
-        .attr("cy",function(d){var maxFreq=maxFreqofSegs[calculateSections(d.x)]+1;
-                                return scaleY(d.y,maxFreq);})
-        .attr("r",function(d){return scaleCircleR(Math.round(d.f));})
-        .style("fill",function(d){return d.color;})
-        .on("mouseover", mouseover)
-        .on("mousemove", function (d) {
-            divToolTip
-                .html(d.name+ "<br>" +"出現頻率: "+Math.round(d.y))
-                .style("left", (d3.event.pageX + 15) + "px")
-                .style("top", (d3.event.pageY - 10) + "px");
-        })
-        .on("mouseout", mouseout);
-    
+    d3.select('#chart')
+    .append("path")
+    .attr('stroke-width',scaleLineWidth(allLineDatas[i][0].f ))
+    .attr('d', line(allLineDatas[i]))
+    .style("stroke",allLineDatas[i][0].color);
+  }
+  //console.log(alltooltipData.length);
+  d3.select('#chart').selectAll("circle")
+  .data(alltooltipData)
+  .enter()
+  .append("circle")
+  .attr("cx",function(d){return scaleX(d.x);})
+  .attr("cy",function(d){var maxFreq=maxFreqofSegs[calculateSections(d.x)]+1;
+    return scaleY(d.y,maxFreq);
+  })
+  .attr("r",function(d){return scaleCircleR(Math.round(d.f));})
+  .style("fill",function(d){return d.color;})
+  .on("mouseover", mouseover)
+  .on("mousemove", function (d) {
+    divToolTip
+    .html(d.name+ "<br>" +"出現頻率: "+Math.round(d.y))
+    .style("left", (d3.event.pageX + 15) + "px")
+    .style("top", (d3.event.pageY - 10) + "px");
+  })
+  .on("mouseout", mouseout);
+}
+
 
 //        //console.log(ch)
 //        var linedata=[];
@@ -199,15 +210,15 @@ function drawData(chap){
 //            alltooltipData.push(linedata[i]);
 //        }
 //
-//        
-//            
+//
+//
 //        d3.select('#chart')
 //            .append("path")
 //            .attr('stroke-width', 1)
 //            .attr('d', line(linedata))
 //            .style("stroke",getRandomColor());
-//        
-//        
+//
+//
 //    }
 //    d3.select('#chart').selectAll("circle")
 //            .data(alltooltipData)
@@ -226,24 +237,38 @@ function drawData(chap){
 //                    .style("top", (d3.event.pageY - 10) + "px");
 //            })
 //            .on("mouseout", mouseout);
-}
+
 
 
 
 $('.chapter-select').on('click',function(){
-    d3.selectAll('svg').remove();
-    chap=$(this).text();
-    $('#chapter-select-show').text(chap);
-    var s = d3.select('body').append('svg' );
-    s.attr({
-        'id':'chart',
-        'width': svgwidth,
-        'height': svgheight
-      }).style({
-        'border': '0px dotted #aaa'
-      });
-    drawData($(this).text()-1)
+  d3.selectAll('svg').remove();
+  chap=$(this).text();
+  $('#chapter-select-show').text(chap);
+  var s = d3.select('body').append('svg' );
+  s.attr({
+    'id':'chart',
+    'width': svgwidth,
+    'height': svgheight
+  }).style({
+    'border': '0px dotted #aaa'
+  });
+  drawData($(this).text()-1)
 });
 
-
-
+//add segment select bar
+$("#segmentSelectBar").on("input", function(){
+  d3.selectAll('svg').remove();
+  console.log("you change segment into "+$(this).val());
+  sections=parseInt($(this).val());
+  var s = d3.select('body').append('svg' );
+  s.attr({
+    'id':'chart',
+    'width': svgwidth,
+    'height': svgheight
+  }).style({
+    'border': '0px dotted #aaa'
+  });
+  $("#SegCount").text(sections);
+  drawData(chap);
+});

@@ -11,6 +11,8 @@
 帕莫娜芽菜 1 nrfg
 辛尼區 1 nrfg
 西碧崔老妮 1 nrfg
+西碧特裡勞妮 1 nrfg
+特裡勞妮 2 nr
 薇朵 1 nrfg
 芭絲茜達芭布玲 1 nrfg
 慈恩波八吉 1 nrfg
@@ -987,7 +989,6 @@
 歐剝雷 2 nr
 歐登 2 nr
 帕金森 2 nr
-派 2 nr
 龐納 2 nr
 龐芮 2 nr
 佩迪魯 2 nr
