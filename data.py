@@ -10,7 +10,7 @@ class nounPosList():
 #global variable
 charPosList=[]
 dataDIR="context/rawdata/HP"
-suffix="seg/"
+suffix="seg"
 
 #dictionary
 jieba.set_dictionary("context/dictionary/dict.txt.big")
@@ -54,6 +54,40 @@ def recordCharPos(query,pos):
     else:
         return False
 
+def adjustPosList(name,posList):
+    """
+    elif(name=="飛七"):
+        targetName="阿各飛七"
+    elif(name=="穆敵"or name=="阿拉特"or name=="瘋眼"or name=="瘋眼穆敵"):
+        targetName="阿拉特穆敵"
+    elif(name=="木透"):
+        targetName="奥利佛木透"
+    elif(name=="巴堤"):
+        targetName="巴堤柯羅奇"
+    elif(name=="柏莎" or name=="喬金"):
+        targetName="柏莎喬金"
+    elif(name=="萊特"):
+        targetName="鮑曼萊特"
+    elif(name=="貝拉"or name=="特里克斯"or name=="貝拉特里克斯"):
+        targetName="貝拉雷斯狀"
+    elif(name=="比爾"):
+        targetName="比爾衛斯理"
+    elif(name=="佩迪魯"or name=="彼得"):
+        targetName="彼得佩迪魯"
+    elif(name=="佩迪魯"):
+        targetName="彼得佩迪魯"
+    """
+    targetName=""
+    if(name=="哈利"):
+        targetName="哈利波特"
+    elif(name=="鄧不利多" or name=="阿不思"):
+        targetName="阿不思鄧不利多"
+    else:
+        return False
+    for item in posList:
+        recordCharPos(targetName,item);
+    return True
+
 for e in range(1,8):
     charPosList=[]
     contextDIR=dataDIR+str(e)+"seg"
@@ -68,6 +102,12 @@ for e in range(1,8):
             #print("word %s\t\t start: %d \t\t end:%d" % (tk[0],tk[1],tk[2]))
             recordCharPos(tk[0],tk[1])
             endPos=tk[2]
+        j=0
+        while(j<len(charPosList)):
+            if(adjustPosList(charPosList[j].name,charPosList[j].posList)):
+                charPosList.pop(j)
+                continue
+            j+=1
         cfile=open("context/freq/hp" + str(e)+"-"+str(i)+"charPos.txt",'a',encoding='utf8')
         ePos={}
         ePos['endPosition']=endPos
@@ -82,6 +122,6 @@ for e in range(1,8):
             cdata['character'].append(cd)
         json.dump(cdata,cfile,ensure_ascii=False,indent=4)
         charPosList.clear()
-
+        
 
         
