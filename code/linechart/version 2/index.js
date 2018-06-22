@@ -25,10 +25,10 @@ var scaleY=d3.scale.linear()
 .domain([0,15000]);*/
 
 function scaleX(x){
-  return parseFloat(x/endPos*svgwidth);
+  return parseFloat(x/endPos*(svgwidth-50)+50);
 }
 function scaleY(y,maxFreq){
-  return parseFloat((1-y/maxFreq)*svgheight);
+  return parseFloat((1-y/maxFreq)*(svgheight-50)+50);
 }
 function scaleLineWidth(w){
   return parseFloat(w/4+1);//Math.log(w,1.5);
@@ -66,25 +66,23 @@ function mouseout() {
   .duration(500)
   .style("opacity", 1e-6);
 }
-
-console.log(data[3][0][0].endPosition);
-for(var gg=0;gg<7;gg++){
-console.log(chapList[gg][0]);
-}
-function drawData(chap){
+var ep=1;
+var chap=1;
+console.log(data[0][0][0].endPosition);
+function drawData(ep,chap){
 
   console.log("when drawData,segment is "+sections);
-  endPos=data[chap][0].endPosition;
+  endPos=data[ep][chap][0].endPosition;
   var alltooltipData=[];
   var allLineDatas=[];//all person's line
   for(var i=0;i<sections;i++){
     maxFreqofSegs[i]=0;
   }
-  //console.log(data[chap][0].endPosition)
-  //console.log(data[chap][1]["character"].length)
-  for(var ch=0;ch<data[chap][1]["character"].length;ch++){
+  //console.log(data[ep][chap][0].endPosition)
+  //console.log(data[ep][chap][1]["character"].length)
+  for(var ch=0;ch<data[ep][chap][1]["character"].length;ch++){
     var linedata=[];
-    var posList=data[chap][1]["character"][ch]["posList"];
+    var posList=data[ep][chap][1]["character"][ch]["posList"];
     var freqOfSegs=Array(sections).fill(0);
     var freqOfAllSegs=0;
     var lineColor=getRandomColor();
@@ -106,7 +104,7 @@ function drawData(chap){
           break;
         }
       }
-      let point={name:data[chap][1]["character"][ch]["name"],
+      let point={name:data[ep][chap][1]["character"][ch]["name"],
       x:firstOccur,
       y:freqOfSegs[i],
       mf:0,
@@ -185,78 +183,40 @@ function drawData(chap){
 }
 
 
-//        //console.log(ch)
-//        var linedata=[];
-//        var point;
-//        for(var i=0;i<data[chap][1]["character"][ch]["posList"].length;i++){
-//            let _x=calculateX(chap,data[chap][1]["character"][ch]["posList"][i])
-//            if(linedata.length>0){
-//                if(linedata[linedata.length-1].x==_x){
-//                    linedata[linedata.length-1].r++;
-//                }
-//                else{
-//                    point={x:_x ,
-//                            y:data[chap][1]["character"][ch]["posList"][i],
-//                            r:1,
-//                            name:data[chap][1]["character"][ch]["name"]};
-//                    linedata.push(point);
-//                }
-//            }
-//            else{
-//                point={x:_x , y:data[chap][1]["character"][ch]["posList"][i],r:1,
-//                            name:data[chap][1]["character"][ch]["name"]};
-//                linedata.push(point);
-//            }
-//        }
-//        for(var i=0;i<linedata.length;i++){
-//            linedata[i].x = linedata[i].y
-//            alltooltipData.push(linedata[i]);
-//        }
-//
-//
-//
-//        d3.select('#chart')
-//            .append("path")
-//            .attr('stroke-width', 1)
-//            .attr('d', line(linedata))
-//            .style("stroke",getRandomColor());
-//
-//
-//    }
-//    d3.select('#chart').selectAll("circle")
-//            .data(alltooltipData)
-//            .enter()
-//            .append("circle")
-//            .attr("cx",function(d){return scaleX(d.x);})
-//            .attr("cy",function(d){return scaleY(d.y);})
-//            .attr("r",function(d){return scaleCircleR(d.r);})
-//            .style("fill","black")
-//            .on("mouseover", mouseover)
-//            .on("mousemove", function (d) {
-//                console.log(d.name)
-//                divToolTip
-//                    .text(d.name)
-//                    .style("left", (d3.event.pageX + 15) + "px")
-//                    .style("top", (d3.event.pageY - 10) + "px");
-//            })
-//            .on("mouseout", mouseout);
 
 
-
-
-$('.chapter-select').on('click',function(){
-  d3.selectAll('svg').remove();
-  chap=$(this).text();
-  $('#chapter-select-show').text(chap);
-  var s = d3.select('body').append('svg' );
-  s.attr({
+$('.episode-select').on('click',function(){
+    d3.selectAll('svg').remove();
+    ep=$('.episode-select').index(this);
+    console.log(ep);
+    $('#episode-select-show').text($(this).text());
+    
+    $('#chapter-select-show').text("chapter");
+    $('#chapter-id').text("");
+    
+    var result=chapList[ep];
+    
+    $('#chapter-select').empty();
+    for(i=0;i<result.length;i++){
+        $('#chapter-select').append('<li><a href="#" class="chapter-select">'+'第' +parseInt(i+1).toString() +'章 '+result[i]+'</a></li>')
+    }
+});
+$('body').on('click','.chapter-select', function(){
+    d3.selectAll('svg').remove();
+    chap=$('.chapter-select').index(this);
+    console.log(chap);
+    $('#chapter-select-show').text($(this).text());
+    var s = d3.select('body').append('svg' );
+    s.attr({
     'id':'chart',
     'width': svgwidth,
     'height': svgheight
-  }).style({
+    }).style({
     'border': '0px dotted #aaa'
-  });
-  drawData(chap-1)
+    });
+    $("#SegCount").text(sections);
+    drawData(ep,chap);
+    
 });
 
 //add segment select bar
@@ -273,5 +233,5 @@ $("#segmentSelectBar").on("input", function(){
     'border': '0px dotted #aaa'
   });
   $("#SegCount").text(sections);
-  drawData(chap-1);
+  drawData(ep,chap);
 });

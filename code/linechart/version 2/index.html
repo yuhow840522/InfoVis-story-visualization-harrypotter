@@ -8,10 +8,11 @@
 <style>
 div.tooltip {
   position: absolute;
-  width: 140px;
+  width: 180px;
   height: 56px;
   padding: 2px;
-  font: 20px sans-serif;
+  text-align: center;
+  font: 20px microsoft jhenghei;
   background: lightsteelblue;
   border: 0px;
   border-radius: 8px;
@@ -25,34 +26,33 @@ div.tooltip {
   <div>
     <div>
     <div class="dropdown btn-group">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="chapter-select-show">chapter
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="episode-select-show">episode
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" style="overflow-y: scroll; max-height: 200px;">
-        <li><a href="#" class="chapter-select">1</a></li>
-        <li><a href="#" class="chapter-select">2</a></li>
-        <li><a href="#" class="chapter-select">3</a></li>
-        <li><a href="#" class="chapter-select">4</a></li>
-        <li><a href="#" class="chapter-select">5</a></li>
-        <li><a href="#" class="chapter-select">6</a></li>
-        <li><a href="#" class="chapter-select">7</a></li>
-        <li><a href="#" class="chapter-select">8</a></li>
-        <li><a href="#" class="chapter-select">9</a></li>
-        <li><a href="#" class="chapter-select">10</a></li>
-        <li><a href="#" class="chapter-select">11</a></li>
-        <li><a href="#" class="chapter-select">12</a></li>
-        <li><a href="#" class="chapter-select">13</a></li>
-        <li><a href="#" class="chapter-select">14</a></li>
-        <li><a href="#" class="chapter-select">15</a></li>
-        <li><a href="#" class="chapter-select">16</a></li>
-        <li><a href="#" class="chapter-select">17</a></li>
+        <li><a href="#" class="episode-select">神秘的魔法石</a></li>
+        <li><a href="#" class="episode-select">消失的密室</a></li>
+        <li><a href="#" class="episode-select">阿茲卡班的逃犯</a></li>
+        <li><a href="#" class="episode-select">火盃的考驗</a></li>
+        <li><a href="#" class="episode-select">鳳凰會的密令</a></li>
+        <li><a href="#" class="episode-select">混血王子的背叛</a></li>
+        <li><a href="#" class="episode-select">死神的聖物</a></li>
       </ul>
     </div>
-      <div class="slidecontainer">
+    <div class="dropdown btn-group" style="margin-left:10px">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="chapter-select-show">chapter
+            <span class="caret"></span>
+        </button>
+        <ul id="chapter-select" class="dropdown-menu" style="overflow-y: scroll; max-height: 200px;">
+            <!-- select in JS -->
+        </ul>
+    </div>
+    
+    <div class="slidecontainer">
         <text>segment：</text><text id="SegCount">3</text>
         <input type="range" min="3" max="10" value="3" class="slider" id="segmentSelectBar">
-      </div>
-
+    </div>
+    
 
     </div>
   </div>
