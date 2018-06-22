@@ -1,0 +1,19 @@
+HP2-01 最糟糕的生日.txt
+HP2-02 多比的警告.txt
+HP2-03 洞穴屋.txt
+HP2-04 在華麗與污痕書店.txt
+HP2-05 渾拚柳.txt
+HP2-06 吉德羅·洛哈.txt
+HP2-07 麻種和細語.txt
+HP2-08 忌辰晚會.txt
+HP2-09 牆上的字.txt
+HP2-10 失控的搏格.txt
+HP2-11 決鬥俱樂部.txt
+HP2-12 變身水.txt
+HP2-13 ?密日記.txt
+HP2-14 康尼留斯·夫子.txt
+HP2-15 阿辣哥.txt
+HP2-16 密室.txt
+HP2-17 史萊哲林的繼承人.txt
+HP2-18 多比的報償.txt
+hp2_chap.txt
