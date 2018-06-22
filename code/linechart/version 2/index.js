@@ -67,9 +67,10 @@ function mouseout() {
   .style("opacity", 1e-6);
 }
 
-
+console.log(data[3][0][0].endPosition);
 
 function drawData(chap){
+
   console.log("when drawData,segment is "+sections);
   endPos=data[chap][0].endPosition;
   var alltooltipData=[];
