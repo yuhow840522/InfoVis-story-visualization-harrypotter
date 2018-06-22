@@ -213,6 +213,7 @@ for e in range(1,8):
         cdata['chapter']=str(i)
         cdata['character']=[]
         for item in charPosList:
+            item.posList.sort()
             cd={'name':item.name,
                 'posList':item.posList}
             cdata['character'].append(cd)
