@@ -68,7 +68,9 @@ function mouseout() {
 }
 
 console.log(data[3][0][0].endPosition);
-
+for(var gg=0;gg<7;gg++){
+console.log(chapList[gg][0]);
+}
 function drawData(chap){
 
   console.log("when drawData,segment is "+sections);
