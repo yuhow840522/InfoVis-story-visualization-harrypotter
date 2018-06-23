@@ -37,23 +37,38 @@ function scaleX(x){
   return parseFloat(x/endPos*(svgwidth-50)+50);
 }
 function scaleY(y,maxFreq){
-  return parseFloat((1-y/maxFreq)*(svgheight-50)+50);
+  if(endPos>100000){
+    return parseFloat((1-y/maxFreq)*(svgheight-50)+50);
+  }
+  else{
+    return parseFloat((1-y/maxFreq)*(svgheight-50)+50);
+  }
 }
 function scaleLineWidth(w){
-  if(w>35){
-    return parseInt(w/6+1);
+  if(endPos>100000){
+    return parseInt((Math.log(w)/5)+1);
   }
   else{
-  return parseFloat(w/4+1);//Math.log(w,1.5);
-}
+    if(w>35){
+      return parseInt(w/6+1);
+    }
+    else{
+      return parseFloat(w/4+1);//Math.log(w,1.5);
+    }
+  }
 }
 function scaleCircleR(r){
-  if(r>35){
-    return parseFloat(r/6+1);
+  if(endPos>100000){
+    return parseInt((Math.log(r)/3)+1);
   }
   else{
-  return parseFloat(r/4+1);//2*(Math.log(r)+1);
-}
+    if(r>35){
+      return parseFloat(r/6+1);
+    }
+    else{
+      return parseFloat(r/4+1);//2*(Math.log(r)+1);
+    }
+  }
 }
 function randomMove(x){
   return parseFloat(x+Math.random()*0.5-0.25);
@@ -89,7 +104,7 @@ function mouseout() {
 }
 var ep=1;
 var chap=1;
-console.log(data[0][0][0].endPosition);
+// console.log(data[0][0][0].endPosition);
 function drawData(ep,chap){
 
   console.log("when drawData,segment is "+sections);
@@ -207,36 +222,41 @@ function drawData(ep,chap){
 
 
 $('.episode-select').on('click',function(){
-    d3.selectAll('svg').remove();
-    ep=$('.episode-select').index(this);
-    console.log(ep);
-    $('#episode-select-show').text($(this).text());
+  d3.selectAll('svg').remove();
+  ep=$('.episode-select').index(this);
+  console.log(ep);
+  $('#episode-select-show').text($(this).text());
 
-    $('#chapter-select-show').text("chapter");
-    $('#chapter-id').text("");
+  $('#chapter-select-show').text("chapter");
+  $('#chapter-id').text("");
 
-    var result=chapList[ep];
+  var result=chapList[ep];
 
-    $('#chapter-select').empty();
-    for(i=0;i<result.length;i++){
-        $('#chapter-select').append('<li><a href="#" class="chapter-select">'+'第' +parseInt(i+1).toString() +'章 '+result[i]+'</a></li>')
+  $('#chapter-select').empty();
+  for(i=0;i<result.length;i++){
+    if(i==0){
+      $('#chapter-select').append('<li><a href="#" class="chapter-select">'+result[i]+'</a></li>')
     }
+    else{
+      $('#chapter-select').append('<li><a href="#" class="chapter-select">'+'第' +parseInt(i).toString() +'章 '+result[i]+'</a></li>')
+    }
+  }
 });
 $('body').on('click','.chapter-select', function(){
-    d3.selectAll('svg').remove();
-    chap=$('.chapter-select').index(this);
-    console.log(chap);
-    $('#chapter-select-show').text($(this).text());
-    var s = d3.select('body').append('svg' );
-    s.attr({
+  d3.selectAll('svg').remove();
+  chap=$('.chapter-select').index(this);
+  console.log(chap);
+  $('#chapter-select-show').text($(this).text());
+  var s = d3.select('body').append('svg' );
+  s.attr({
     'id':'chart',
     'width': svgwidth,
     'height': svgheight
-    }).style({
+  }).style({
     'border': '0px dotted #aaa'
-    });
-    $("#SegCount").text(sections);
-    drawData(ep,chap);
+  });
+  $("#SegCount").text(sections);
+  drawData(ep,chap);
 
 });
 
