@@ -184,7 +184,7 @@ def adjustPosList(name,posList):
         recordCharPos(targetName,item);
     return True
 
-for e in range(1,8):
+for e in range(2,3):
     charPosList=[]
     contextDIR=dataDIR+str(e)+"seg"
     print(contextDIR)

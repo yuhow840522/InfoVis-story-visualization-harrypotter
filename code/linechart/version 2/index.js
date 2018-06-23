@@ -49,7 +49,7 @@ function scaleLineWidth(w){
     return parseInt((Math.log(w)/5)+1);
   }
   else{
-    if(w>35){
+    if(w>30){
       return parseInt(w/6+1);
     }
     else{
@@ -62,7 +62,7 @@ function scaleCircleR(r){
     return parseInt((Math.log(r)/3)+1);
   }
   else{
-    if(r>35){
+    if(r>30){
       return parseFloat(r/6+1);
     }
     else{
@@ -82,7 +82,7 @@ function calculateSections(x){
 var line = d3.svg.line()
 .x((d) => scaleX(d.x))
 .y((d) => scaleY(d.y,d.mf))
-// .interpolate("step-after")
+// .interpolate("step-after");
 .interpolate("monotone");
 
 //console.log(data[0][1]["character"][]);

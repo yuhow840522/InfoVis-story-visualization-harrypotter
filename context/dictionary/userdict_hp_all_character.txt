@@ -275,8 +275,8 @@
 愛妮 1 nrfg
 咪蘭史超 1 nrfg
 吉德羅洛哈 1 nrfg
-多比 1 nrfg
 眨眨 1 nrfg
+多比 1 nrfg
 怪角 1 nrfg
 哈佳 1 nrfg
 焚銳灰背 1 nrfg
@@ -649,7 +649,6 @@
 烏瓜 2 nr
 愛妮 2 nr
 咪蘭 2 nr
-多比 2 nr
 眨眨 2 nr
 怪角 2 nr
 哈佳 2 nr
