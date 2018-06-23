@@ -1,5 +1,7 @@
-var svgwidth=1600;
-var svgheight=900;
+
+
+var svgwidth=window.screen.availWidth*0.852;
+var svgheight=window.screen.availHeight*0.7;
 var endPos=15000;
 var sections=3;
 
@@ -15,6 +17,13 @@ function getRandomColor() {
   }
   return color;
 }
+// function getCharacterColor(){
+//
+//
+// }
+
+
+
 /*
 var scaleX=d3.scale.linear()
 .range([0,1600])
@@ -31,10 +40,20 @@ function scaleY(y,maxFreq){
   return parseFloat((1-y/maxFreq)*(svgheight-50)+50);
 }
 function scaleLineWidth(w){
+  if(w>35){
+    return parseInt(w/6+1);
+  }
+  else{
   return parseFloat(w/4+1);//Math.log(w,1.5);
 }
+}
 function scaleCircleR(r){
+  if(r>35){
+    return parseFloat(r/6+1);
+  }
+  else{
   return parseFloat(r/4+1);//2*(Math.log(r)+1);
+}
 }
 function randomMove(x){
   return parseFloat(x+Math.random()*0.5-0.25);
@@ -48,7 +67,9 @@ function calculateSections(x){
 var line = d3.svg.line()
 .x((d) => scaleX(d.x))
 .y((d) => scaleY(d.y,d.mf))
-.interpolate("step-after")
+// .interpolate("step-after")
+.interpolate("monotone");
+
 //console.log(data[0][1]["character"][]);
 
 
@@ -190,12 +211,12 @@ $('.episode-select').on('click',function(){
     ep=$('.episode-select').index(this);
     console.log(ep);
     $('#episode-select-show').text($(this).text());
-    
+
     $('#chapter-select-show').text("chapter");
     $('#chapter-id').text("");
-    
+
     var result=chapList[ep];
-    
+
     $('#chapter-select').empty();
     for(i=0;i<result.length;i++){
         $('#chapter-select').append('<li><a href="#" class="chapter-select">'+'第' +parseInt(i+1).toString() +'章 '+result[i]+'</a></li>')
@@ -216,7 +237,7 @@ $('body').on('click','.chapter-select', function(){
     });
     $("#SegCount").text(sections);
     drawData(ep,chap);
-    
+
 });
 
 //add segment select bar
