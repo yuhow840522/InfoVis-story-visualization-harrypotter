@@ -1,0 +1,158 @@
+p {
+  float:center;
+  text-align:justify;
+  font-weight:bold;
+  font-size: 15;
+  line-height: 2;
+}
+
+.fontSet {
+  font-family:Helvetica, Arial, 'LiHei Pro', '微軟正黑體','新細明體',"Microsoft YaHei","Microsoft JhengHei","Meiryo",sans-serif;
+  /* font-family: 'Microsoft JhengHei'; */
+}
+div.tooltip {
+  position: absolute;
+  width: 180px;
+  height: 56px;
+  padding: 2px;
+  text-align: center;
+  font: 20px microsoft jhenghei;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+#chart path {
+  fill: transparent;
+  stroke: green;
+}
+
+.slidecontainer {
+  width: 50%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  margin-top: 0.3%;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 20%; /* Full-width */
+  height: 27px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 30px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+/* Style the header*/
+/* header {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+} */
+footer {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: grey;
+   color: white;
+   text-align: center;
+}
+.flex-container {
+        display: flex;
+        margin: auto;
+        width: 80%;
+        line-height: 200%;
+        justify-content: space-around;
+        text-align: center;
+    }
+header{
+  /* position: fixed; */
+  height:8%;
+  margin:0 auto;
+  width: 100%;
+  color: white;
+  background-color:grey ;
+  text-align: center;
+  /* background-image:url(img/bg.png); */
+}
+
+.content{
+  padding-left: 5%;
+  width: 45%;
+  font-size: 18px;
+  float: left;
+
+}
+.copyright{
+  padding-left: 5%;
+  width: 45%;
+  font-size: 18px;
+  float:left;
+
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  margin:0% 0% 0% 0%;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  line-height: 0%;
+  height: 3%;
+  border: 5;
+  text-align: center;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.contentOfCollapsible {
+  padding: 0 18px;
+    width: 100%;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  margin:0% 0% 2% 0%;
+}
+
+.no-padding {
+  padding: 1 !important;
+  margin: 0 !important;
+}
