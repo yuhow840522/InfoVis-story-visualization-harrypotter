@@ -143,7 +143,7 @@ function drawData(ep,chap){
     var freqOfAllSegs=0;
     var lineColor=getRandomColor();
     for(var i=0;i<posList.length;i++){
-      let x=posList[i];
+      var x=posList[i];
       freqOfSegs[calculateSections(x)]++;
       freqOfAllSegs++;
       // console.log(calculateSections(x)+"||"+freqOfSegs[calculateSections(x)]+"||"+maxFreqofSegs[calculateSections(x)]);
@@ -160,7 +160,7 @@ function drawData(ep,chap){
           break;
         }
       }
-      let point={name:data[ep][chap][1]["character"][ch]["name"],
+      var point={name:data[ep][chap][1]["character"][ch]["name"],
       x:firstOccur,
       y:freqOfSegs[i],
       mf:0,
@@ -176,7 +176,7 @@ function drawData(ep,chap){
       }
       linedata.push(point);
     }
-    let point={
+    var point={
       name:linedata[linedata.length-1].name,
       x:endPos+100,
       y:linedata[linedata.length-1].y,
@@ -189,12 +189,12 @@ function drawData(ep,chap){
 
   for(var i=1;i<sections;i++){
     var sectionLine=[];
-    let Point1={
+    var Point1={
       x:i*endPos/sections,
       y:1,
       mf:1
     };
-    let Point2={x:i*endPos/sections,
+    var Point2={x:i*endPos/sections,
       y:0,
       mf:1
     };
