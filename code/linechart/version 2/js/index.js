@@ -1,6 +1,6 @@
 
 
-var svgwidth=window.screen.availWidth*0.852;
+var svgwidth=window.screen.availWidth*0.95+20;
 var svgheight=window.screen.availHeight*0.7;
 var endPos=15000;
 var sections=3;
@@ -82,8 +82,8 @@ function calculateSections(x){
 var line = d3.svg.line()
 .x((d) => scaleX(d.x))
 .y((d) => scaleY(d.y,d.mf))
-// .interpolate("step-after");
-.interpolate("monotone");
+.interpolate("step-after");
+// .interpolate("monotone");
 
 //console.log(data[0][1]["character"][]);
 
@@ -253,7 +253,8 @@ $('body').on('click','.chapter-select', function(){
     'width': svgwidth,
     'height': svgheight
   }).style({
-    'border': '0px dotted #aaa'
+    // 'border': '1px dotted #aaa'
+    'border':'0px'
   });
   $("#SegCount").text(sections);
   drawData(ep,chap);
