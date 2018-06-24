@@ -1,25 +1,20 @@
 // zoom with screen.width
 //for mobile device but can't support HORIZON MODE
-if(screen.width<768){
+if(window.screen.width<768){
   var svgwidth=window.screen.availWidth*1.1+20;
   var svgheight=window.screen.availHeight*0.75;
   document.write("<style>html{zoom:"+(screen.width/1920)*4+";}</style>");
-  document.write("<style>header > h1{ font-size:150% !important ;}</style>");
+  // console.log("<style>html{zoom:"+(screen.width/1920)*4+";}</style>")
+  document.write("<style>h1{ font-size:150% !important ;}</style>");
   // console.log("screen.width is "+screen.width +",zoom html "+parseInt((screen.width/1920)*100)*4+"%");
 }
-else if(screen.width<750){
-  var svgwidth=window.screen.availWidth*0.7+20;
-  var svgheight=window.screen.availHeight*0.75;
-  document.write("<style>html{zoom:"+(screen.width/1920)*4+";}</style>");
-  // console.log("screen.width is "+screen.width +",zoom html "+parseInt((screen.width/1920)*100)*4+"%");
-}
-
 //for desktop or tablet
 else{
   var svgwidth=window.screen.availWidth*0.95+20;
   var svgheight=window.screen.availHeight*0.7;
-  document.write("<style>header, .button{zoom:"+screen.width/1920*+";}</style>");
-  console.log("screen.width is "+screen.width +",zoom button & header "+parseInt((screen.width/1920)*100)+"%");
+  document.write("<style>header{zoom:"+window.screen.width/1920+ "!important;}</style>");
+  document.write("<style>.button{zoom:"+window.screen.width/1920+ "!important;}</style>");
+  // console.log("screen.width is "+screen.width +",zoom button & header "+parseInt((screen.width/1920)*100)+"%");
 }
 
 
