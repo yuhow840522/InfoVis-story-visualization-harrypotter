@@ -1,3 +1,12 @@
+/* @media screen and (max-device-width : 1920px)
+{
+  header
+  {
+    font-size:13px;
+  }
+} */
+
+
 .fontSet {
   font-family:Helvetica, Arial, 'LiHei Pro', '微軟正黑體','新細明體',"Microsoft YaHei","Microsoft JhengHei","Meiryo",sans-serif;
   /* font-family: 'Microsoft JhengHei'; */

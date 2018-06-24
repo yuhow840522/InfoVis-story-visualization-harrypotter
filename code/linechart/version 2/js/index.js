@@ -1,4 +1,5 @@
-
+document.write("<style>body{zoom:"+screen.width/1920+";}</style>");
+console.log(screen.width);
 
 var svgwidth=window.screen.availWidth*0.95+20;
 var svgheight=window.screen.availHeight*0.7;
