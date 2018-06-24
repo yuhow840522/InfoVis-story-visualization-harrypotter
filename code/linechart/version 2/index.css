@@ -1,17 +1,15 @@
-/* @media screen and (max-device-width : 1920px)
-{
-  header
-  {
-    font-size:13px;
-  }
-} */
-
+p {
+  float:center;
+  text-align:justify;
+  font-weight:bold;
+  font-size: 15;
+  line-height: 2;
+}
 
 .fontSet {
   font-family:Helvetica, Arial, 'LiHei Pro', '微軟正黑體','新細明體',"Microsoft YaHei","Microsoft JhengHei","Meiryo",sans-serif;
   /* font-family: 'Microsoft JhengHei'; */
 }
-
 div.tooltip {
   position: absolute;
   width: 180px;
@@ -155,6 +153,6 @@ header{
 }
 
 .no-padding {
-  padding: 0 !important;
+  padding: 1 !important;
   margin: 0 !important;
 }

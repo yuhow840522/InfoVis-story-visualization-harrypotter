@@ -1,8 +1,32 @@
-document.write("<style>body{zoom:"+screen.width/1920+";}</style>");
-console.log(screen.width);
+// zoom with screen.width
+//for mobile device but can't support HORIZON MODE
+if(screen.width<768){
+  var svgwidth=window.screen.availWidth*1.1+20;
+  var svgheight=window.screen.availHeight*0.75;
+  document.write("<style>html{zoom:"+(screen.width/1920)*4+";}</style>");
+  document.write("<style>header > h1{ font-size:150% !important ;}</style>");
+  // console.log("screen.width is "+screen.width +",zoom html "+parseInt((screen.width/1920)*100)*4+"%");
+}
+else if(screen.width<750){
+  var svgwidth=window.screen.availWidth*0.7+20;
+  var svgheight=window.screen.availHeight*0.75;
+  document.write("<style>html{zoom:"+(screen.width/1920)*4+";}</style>");
+  // console.log("screen.width is "+screen.width +",zoom html "+parseInt((screen.width/1920)*100)*4+"%");
+}
 
-var svgwidth=window.screen.availWidth*0.95+20;
-var svgheight=window.screen.availHeight*0.7;
+//for desktop or tablet
+else{
+  var svgwidth=window.screen.availWidth*0.95+20;
+  var svgheight=window.screen.availHeight*0.7;
+  document.write("<style>header, .button{zoom:"+screen.width/1920*+";}</style>");
+  console.log("screen.width is "+screen.width +",zoom button & header "+parseInt((screen.width/1920)*100)+"%");
+}
+
+
+
+
+// var svgwidth=window.screen.availWidth*0.95+20;
+// var svgheight=window.screen.availHeight*0.7;
 var endPos=15000;
 var sections=3;
 
@@ -108,7 +132,7 @@ var chap=1;
 // console.log(data[0][0][0].endPosition);
 function drawData(ep,chap){
 
-  console.log("when drawData,segment is "+sections);
+  // console.log("when drawData,segment is "+sections);
   endPos=data[ep][chap][0].endPosition;
   var alltooltipData=[];
   var allLineDatas=[];//all person's line
@@ -225,7 +249,7 @@ function drawData(ep,chap){
 $('.episode-select').on('click',function(){
   d3.selectAll('svg').remove();
   ep=$('.episode-select').index(this);
-  console.log(ep);
+  // console.log(ep);
   $('#episode-select-show').text($(this).text());
 
   $('#chapter-select-show').text("chapter");
@@ -246,7 +270,7 @@ $('.episode-select').on('click',function(){
 $('body').on('click','.chapter-select', function(){
   d3.selectAll('svg').remove();
   chap=$('.chapter-select').index(this);
-  console.log(chap);
+  // console.log(chap);
   $('#chapter-select-show').text($(this).text());
   var s = d3.select('body').append('svg' );
   s.attr({
@@ -265,7 +289,7 @@ $('body').on('click','.chapter-select', function(){
 //add segment select bar
 $("#segmentSelectBar").on("input", function(){
   d3.selectAll('svg').remove();
-  console.log("you change segment into "+$(this).val());
+  // console.log("you change segment into "+$(this).val());
   sections=parseInt($(this).val());
   var s = d3.select('body').append('svg' );
   s.attr({
